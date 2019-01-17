@@ -21,7 +21,7 @@ import static android.view.View.VISIBLE;
 
 public class SaveDrawingTask extends AsyncTask<Bitmap, Void, Pair<File, Exception>> {
 
-    private static final String SAVED_IMAGE_FORMAT = "png";
+    private static final String SAVED_IMAGE_FORMAT = ".png";
     private static final String SAVED_IMAGE_NAME = "cutout_tmp";
 
     private final WeakReference<ResultActivity> activityWeakReference;
@@ -41,7 +41,8 @@ public class SaveDrawingTask extends AsyncTask<Bitmap, Void, Pair<File, Exceptio
     protected Pair<File, Exception> doInBackground(Bitmap... bitmaps) {
 
         try {
-            File file = File.createTempFile(SAVED_IMAGE_NAME, SAVED_IMAGE_FORMAT, activityWeakReference.get().getApplicationContext().getCacheDir());
+           // File file=new File(ResultActivity.getSaveDir());
+            File file = File.createTempFile(SAVED_IMAGE_NAME, SAVED_IMAGE_FORMAT,new File(ResultActivity.getSaveDir()));
 
             try (FileOutputStream out = new FileOutputStream(file)) {
                 bitmaps[0].compress(Bitmap.CompressFormat.PNG, 95, out);

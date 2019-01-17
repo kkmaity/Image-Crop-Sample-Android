@@ -20,7 +20,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -287,4 +289,11 @@ public class ResultActivity extends AppCompatActivity {
   private void redo() {
     drawView.redo();
   }
+
+
+  @NonNull
+  public static String getSaveDir() {
+    return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/fetch";
+  }
+
 }
